@@ -1,0 +1,15 @@
+# Environnement virtuel
+env/
+venv/
+.env
+
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+
+# Dossiers temporaires
+*.log
+*.sqlite3
+
+# Fichiers système
+.DS_Store

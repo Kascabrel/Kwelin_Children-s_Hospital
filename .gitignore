@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+env/
+.env/
+*.venv
+*.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Logs and databases
+*.log
+*.sqlite3
+instance/
+db.sqlite3
+
+# Pip and package dependencies
+*.egg-info/
+dist/
+build/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Flask and Gunicorn specific files
+*.pid
+*.sock
+*.coverage
+htmlcov/
+cover/
+
+# Node modules (if using frontend with Flask)
+node_modules/
+npm-debug.log
+
+# Docker files (if applicable)
+docker-compose.override.yml
+
+# Deployment-related files
+*.pem
+.envrc

@@ -21,10 +21,11 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh root@kascali.de << 'EOF'
-            cd /var/www/Example-CI-CD-Github-Action
-            git pull origin main
-            source venv/bin/activate
-            pip install -r requirements.txt
-            sudo systemctl restart Example-CI-CD-Github-Action
+          echo "Création du dossier .ssh"
+          mkdir -p /home/runner/.ssh
+          echo "Vérification du répertoire .ssh"
+          ls -al /home/runner/.ssh  # Pour vérifier que le répertoire est bien créé
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa
+          chmod 600 /home/runner/.ssh/id_rsa
+          ssh-keyscan -H kascali.de >> /home/runner/.ssh/known_hosts
           EOF

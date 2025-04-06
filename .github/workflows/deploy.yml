@@ -1,0 +1,31 @@
+name: Deploy first Flask App with GitHub Actions on debian server
+
+on:
+  push:
+    branches:
+      - main  # Déclencher l'action sur push dans main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
+
+      - name: Deploy to Server
+        run: |
+          ssh root@kascali.de << 'EOF'
+            cd /var/www/Example-CI-CD-Github-Action
+            git pull origin main
+            source venv/bin/activate
+            pip install -r requirements.txt
+            sudo systemctl restart Example-CI-CD-Github-Action
+          EOF

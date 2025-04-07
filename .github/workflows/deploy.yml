@@ -1,41 +1,40 @@
-name: Deploy first Flask App with GitHub Actions on Debian server
+name: Deploy Flask App to Debian Server
 
 on:
   push:
     branches:
-      - main
+      - main  # Déclenche le workflow sur chaque push dans la branche main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: Setup SSH and Deploy
+      - name: Configuration SSH & Déploiement
         run: |
-          mkdir -p /home/runner/.ssh
-          echo "${{ secrets.SSH_PRIVATA_KEY }}" > /home/runner/.ssh/id_rsa
-          chmod 600 /home/runner/.ssh/id_rsa
-          ssh-keyscan -H kascali.de >> /home/runner/.ssh/known_hosts
-          
-          # Afficher les permissions du fichier id_rsa
-          ls -al /home/runner/.ssh/
-          
-          # Tester la connexion SSH avant de lancer les commandes
-          ssh -i /home/runner/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de 'echo "SSH connecté avec succès !"'
-          
-          # Déploiement
-          ssh -i /home/runner/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
-            echo "Naviguer vers le répertoire de l'application"
+          echo "==> Configuration de SSH"
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
+
+          echo "==> Connexion au serveur et déploiement"
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
+            echo "🛠️ Passage dans le répertoire de l'app"
             cd /var/www/Example-CI-CD-Github-Action || exit 1
-            echo "Tirer les dernières modifications"
+
+            echo "🔄 Pull depuis Git"
             git pull origin main || exit 1
-            echo "Activer l'environnement virtuel"
+
+            echo "🐍 Activation de l'environnement virtuel"
             source env/bin/activate || exit 1
-            echo "Installer les dépendances"
+
+            echo "📦 Installation des dépendances"
             pip install -r requirements.txt || exit 1
-            echo "Redémarrer le service"
+
+            echo "🚀 Redémarrage du service"
             sudo systemctl restart Example-CI-CD-Github-Action || exit 1
           EOF

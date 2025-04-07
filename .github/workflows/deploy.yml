@@ -20,10 +20,10 @@ jobs:
             mkdir -p ~/.ssh
             echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
-            ssh-keyscan -H TON_IP_OU_DOMAINE >> ~/.ssh/known_hosts
+            ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
         
             echo "==> Connexion au serveur et déploiement"
-            ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@TON_IP_OU_DOMAINE << 'EOF'
+            ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
               echo "🛠️ Passage dans le répertoire de l'app"
               cd /var/www/Example-CI-CD-Github-Action || exit 1
         

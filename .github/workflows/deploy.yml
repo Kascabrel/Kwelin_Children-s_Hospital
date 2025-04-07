@@ -15,26 +15,28 @@ jobs:
 
       - name: Configuration SSH & Déploiement
         run: |
-          echo "==> Configuration de SSH"
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
-
-          echo "==> Connexion au serveur et déploiement"
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
-            echo "🛠️ Passage dans le répertoire de l'app"
-            cd /var/www/Example-CI-CD-Github-Action || exit 1
-
-            echo "🔄 Pull depuis Git"
-            git pull origin main || exit 1
-
-            echo "🐍 Activation de l'environnement virtuel"
-            source env/bin/activate || exit 1
-
-            echo "📦 Installation des dépendances"
-            pip install -r requirements.txt || exit 1
-
-            echo "🚀 Redémarrage du service"
-            sudo systemctl restart Example-CI-CD-Github-Action || exit 1
-          EOF
+          run: |
+            echo "==> Configuration de SSH"
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -H TON_IP_OU_DOMAINE >> ~/.ssh/known_hosts
+        
+            echo "==> Connexion au serveur et déploiement"
+            ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@TON_IP_OU_DOMAINE << 'EOF'
+              echo "🛠️ Passage dans le répertoire de l'app"
+              cd /var/www/Example-CI-CD-Github-Action || exit 1
+        
+              echo "🔄 Pull depuis Git"
+              git pull origin main || exit 1
+        
+              echo "🐍 Activation de l'environnement virtuel"
+              source env/bin/activate || exit 1
+        
+              echo "📦 Installation des dépendances"
+              pip install -r requirements.txt || exit 1
+        
+              echo "🚀 Redémarrage du service"
+              sudo systemctl restart Example-CI-CD-Github-Action || exit 1
+            EOF
+        

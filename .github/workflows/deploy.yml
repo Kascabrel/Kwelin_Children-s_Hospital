@@ -27,6 +27,6 @@ jobs:
           echo "Vérification du répertoire .ssh"
           ls -al /root/.ssh  # Pour vérifier que le répertoire est bien créé
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > /root/.ssh/id_rsa
-          chmod 600 /home/runner/.ssh/id_rsa
+          chmod 600 /root/.ssh/id_rsa
           ssh-keyscan -H kascali.de >> /root/.ssh/known_hosts
           EOF

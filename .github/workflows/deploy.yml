@@ -1,4 +1,4 @@
-name: Deploy first Flask App with GitHub Actions on debian server
+name: Deploy first Flask App with GitHub Actions on Debian server
 
 on:
   push:
@@ -13,20 +13,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup SSH
+      - name: Setup SSH and Deploy
         run: |
-          
-          echo "${{ secrets.SSH_PRIVATA_KEY }}" > /root/.ssh/id_rsa
-          chmod 600 /root/.ssh/id_rsa
-          ssh-keyscan -H kascali.de >> /root/.ssh/known_hosts
+          mkdir -p /home/runner/.ssh
+          echo "${{ secrets.SSH_PRIVATA_KEY }}" > /home/runner/.ssh/id_rsa
+          chmod 600 /home/runner/.ssh/id_rsa
+          ssh-keyscan -H kascali.de >> /home/runner/.ssh/known_hosts
 
-      - name: Deploy to Server
-        run: |
-          echo "Création du dossier .ssh"
-          mkdir -p /root/.ssh
-          echo "Vérification du répertoire .ssh"
-          ls -al /root/.ssh  
-          echo "${{ secrets.SSH_PRIVATA_KEY }}" > /root/.ssh/id_rsa
-          chmod 600 /root/.ssh/id_rsa
-          ssh-keyscan -H kascali.de >> /root/.ssh/known_hosts
+          ssh -i /home/runner/.ssh/id_rsa -o StrictHostKeyChecking=no user@kascali.de << 'EOF'
+            cd /var/www/Example-CI-CD-Github-Action
+            git pull origin main
+            source env/bin/activate
+            pip install -r requirements.txt
+            sudo systemctl restart Example-CI-CD-Github-Action  
           EOF

@@ -17,7 +17,7 @@ jobs:
         run: |
           
           echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          chmod 600 /root/.ssh/id_rsa
           ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
 
       - name: Deploy to Server

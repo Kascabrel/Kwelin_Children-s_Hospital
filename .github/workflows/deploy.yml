@@ -3,7 +3,7 @@ name: Deploy first Flask App with GitHub Actions on Debian server
 on:
   push:
     branches:
-      - main  # Déclencher l'action sur push dans main
+      - main
 
 jobs:
   deploy:
@@ -19,11 +19,23 @@ jobs:
           echo "${{ secrets.SSH_PRIVATA_KEY }}" > /home/runner/.ssh/id_rsa
           chmod 600 /home/runner/.ssh/id_rsa
           ssh-keyscan -H kascali.de >> /home/runner/.ssh/known_hosts
-
-          ssh -i /home/runner/.ssh/id_rsa -o StrictHostKeyChecking=no user@kascali.de << 'EOF'
-            cd /var/www/Example-CI-CD-Github-Action
-            git pull origin main
-            source env/bin/activate
-            pip install -r requirements.txt
-            sudo systemctl restart Example-CI-CD-Github-Action  
+          
+          # Afficher les permissions du fichier id_rsa
+          ls -al /home/runner/.ssh/
+          
+          # Tester la connexion SSH avant de lancer les commandes
+          ssh -i /home/runner/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de 'echo "SSH connecté avec succès !"'
+          
+          # Déploiement
+          ssh -i /home/runner/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
+            echo "Naviguer vers le répertoire de l'application"
+            cd /var/www/Example-CI-CD-Github-Action || exit 1
+            echo "Tirer les dernières modifications"
+            git pull origin main || exit 1
+            echo "Activer l'environnement virtuel"
+            source env/bin/activate || exit 1
+            echo "Installer les dépendances"
+            pip install -r requirements.txt || exit 1
+            echo "Redémarrer le service"
+            sudo systemctl restart Example-CI-CD-Github-Action || exit 1
           EOF

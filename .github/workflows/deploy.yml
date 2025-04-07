@@ -3,7 +3,7 @@ name: Deploy Flask App to Debian Server
 on:
   push:
     branches:
-      - main  # Trigger the workflow on push to the main branch
+      - main  # Déclenche le workflow sur chaque push dans la branche main
 
 jobs:
   deploy:
@@ -16,18 +16,19 @@ jobs:
       - name: SSH Setup & Deployment
         shell: bash
         run: |
-          set -x  # Show each command in logs for debugging
-
-          echo "==> Setting up SSH"
+          # Setup SSH
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 37.114.53.98 >> ~/.ssh/known_hosts
+          ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
 
-          echo "==> Connecting to server and deploying"
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@37.114.53.98 << 'EOF'
+          # Deploy to server
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
             echo "🔧 Switching to app directory"
             cd /var/www/Example-CI-CD-Github-Action || exit 1
+
+            # Add the directory as a safe directory
+            git config --global --add safe.directory /var/www/Example-CI-CD-Github-Action
 
             echo "🔄 Pulling latest code"
             git pull origin main || exit 1

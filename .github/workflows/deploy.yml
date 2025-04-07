@@ -3,42 +3,35 @@ name: Deploy Flask App to Debian Server
 on:
   push:
     branches:
-      - main  # Déclenche le workflow sur chaque push dans la branche main
+      - main  # Déclencher l'action sur push dans la branche main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout du code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Configuration SSH & Déploiement
-        shell: bash
+      - name: Setup SSH
         run: |
-          echo "==> Configuration de SSH"
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
-
-          echo "==> Connexion au serveur et déploiement"
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
-            echo " Passage dans le répertoire de l'app"
+          ssh-keyscan -H 37.114.53.98 >> ~/.ssh/known_hosts
+      - name: Deploy to Server
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@37.114.53.98 << 'EOF'
+            echo "🔧 Switching to app directory"
             cd /var/www/Example-CI-CD-Github-Action || exit 1
-
-            echo " Stashing les changements locaux (si présents)"
-            git stash || true  # Stash pour sauvegarder les changements locaux non commités
-
-            echo " Pull depuis Git"
+            # Add the directory as a safe directory
+            git config --global --add safe.directory /var/www/Example-CI-CD-Github-Action
+            echo " Pulling latest code"
             git pull origin main || exit 1
-
-            echo " Activation de l'environnement virtuel"
+            echo " Activating virtual environment"
             source env/bin/activate || exit 1
-
-            echo " Installation des dépendances"
+            echo " Installing dependencies"
             pip install -r requirements.txt || exit 1
-
-            echo " Redémarrage du service"
+            echo " Restarting service"
             sudo systemctl restart Example-CI-CD-Github-Action || exit 1
           EOF

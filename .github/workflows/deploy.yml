@@ -3,43 +3,41 @@ name: Deploy Flask App to Debian Server
 on:
   push:
     branches:
-      - main  # Déclenche le workflow sur chaque push dans la branche main
+      - main  # Déclencher l'action sur push dans la branche main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: SSH Setup & Deployment
-        shell: bash
+      - name: Setup SSH
         run: |
-          # Setup SSH
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H kascali.de >> ~/.ssh/known_hosts
-      
-          # Enable debugging for SSH
-          echo "==> Verifying SSH connection"
-          ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@kascali.de << 'EOF'
+          ssh-keyscan -H 37.114.53.98 >> ~/.ssh/known_hosts
+
+      - name: Deploy to Server
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@37.114.53.98 << 'EOF'
             echo "🔧 Switching to app directory"
             cd /var/www/Example-CI-CD-Github-Action || exit 1
 
             # Add the directory as a safe directory
             git config --global --add safe.directory /var/www/Example-CI-CD-Github-Action
 
-            echo "🔄 Pulling latest code"
+            echo " Pulling latest code"
             git pull origin main || exit 1
 
-            echo "🐍 Activating virtual environment"
+            echo " Activating virtual environment"
             source env/bin/activate || exit 1
 
-            echo "📦 Installing dependencies"
+            echo " Installing dependencies"
             pip install -r requirements.txt || exit 1
 
-            echo "🚀 Restarting service"
+            echo " Restarting service"
             sudo systemctl restart Example-CI-CD-Github-Action || exit 1
           EOF

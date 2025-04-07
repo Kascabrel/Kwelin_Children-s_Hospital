@@ -25,8 +25,8 @@ jobs:
           echo "Création du dossier .ssh"
           mkdir -p /root/.ssh
           echo "Vérification du répertoire .ssh"
-          ls -al /root/.ssh  # Pour vérifier que le répertoire est bien créé
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /root/.ssh/id_rsa
+          ls -al /root/.ssh  
+          echo "${{ secrets.SSH_PRIVATA_KEY }}" > /root/.ssh/id_rsa
           chmod 600 /root/.ssh/id_rsa
           ssh-keyscan -H kascali.de >> /root/.ssh/known_hosts
           EOF

@@ -1,12 +1,11 @@
-from flask import Flask, render_template
+from flask import render_template
 
-app = Flask(__name__)
-app.config.from_object('config.Config')
+from app import app
 
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html')
+    return "render_template('index.html')"
 
 
 @app.route('/hello')

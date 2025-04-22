@@ -14,22 +14,23 @@
     <!-- Section 1: Severe Malaria Treatment -->
     <div class="mb-16">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">1. Treatment of Severe Malaria and Its Associated Complications</h3>
-      <p class="text-gray-700 text-lg leading-relaxed">
-        Severe malaria remains the number one killer in our community. At Dza Kwelin Children's Hospital, we approach diagnosis and treatment with urgency and precision.
-        <br><br>
-        Our rapid diagnostic tests and microscopic blood smears confirm the parasite presence and density. Intravenous artesunate is our first-line treatment, delivered swiftly to stop the infection in its tracks.
-        <br><br>
-        Severe malaria often leads to life-threatening anemia, which is why we prioritize timely, safe blood transfusions. Our team ensures rigorous blood typing, cross-matching, and careful monitoring to improve patient outcomes and save lives.
-      </p>
+      <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
+        <img src="{{ url_for('static', filename='images/malaria-treatment.jpg') }}" alt="Malaria Treatment" class="rounded-lg object-cover w-full h-64">
+        <p class="text-gray-700 text-lg leading-relaxed">
+          Severe malaria remains the number one killer in our community. At Dza Kwelin Children's Hospital, we approach diagnosis and treatment with urgency and precision.
+          <br><br>
+          Our rapid diagnostic tests and microscopic blood smears confirm the parasite presence and density. Intravenous artesunate is our first-line treatment, delivered swiftly to stop the infection in its tracks.
+          <br><br>
+          Severe malaria often leads to life-threatening anemia, which is why we prioritize timely, safe blood transfusions. Our team ensures rigorous blood typing, cross-matching, and careful monitoring to improve patient outcomes and save lives.
+        </p>
+      </div>
     </div>
 
     <!-- Section 2: Pediatric Infections -->
     <div class="mb-16">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">2. Treatment of Various Pediatric Infections</h3>
       <div class="grid md:grid-cols-2 gap-6 mb-6">
-        <!-- Image 1 -->
         <img src="{{ url_for('static', filename='images/infection-treatment.jpg') }}" alt="Pediatric Infection Treatment 1" class="rounded-lg object-cover w-full h-64">
-        <!-- Image 2 -->
         <img src="{{ url_for('static', filename='images/infection-treatment2.jpg') }}" alt="Pediatric Infection Treatment 2" class="rounded-lg object-cover w-full h-64">
       </div>
       <p class="text-gray-700 text-lg leading-relaxed">
@@ -42,13 +43,10 @@
     </div>
 
     <!-- Section 3: Pediatric Emergency Care -->
-    <div>
+    <div class="mb-16">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">3. Emergency Management of Common Pediatric Ailments</h3>
       <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
-        <!-- Image -->
         <img src="{{ url_for('static', filename='images/emergency-care.jpg') }}" alt="Emergency Pediatric Care" class="rounded-lg object-cover w-full h-64">
-
-        <!-- Text -->
         <p class="text-gray-700 text-lg leading-relaxed">
           The Dza Kwelin Children's Hospital is equipped to handle a range of common pediatric emergencies with prompt and efficient care.
           <br><br>
@@ -60,6 +58,50 @@
         </p>
       </div>
     </div>
+
+    <!-- Section 4: Pediatric Neurosurgical Care -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-semibold text-blue-800 mb-4">4. Pediatric Neurosurgical Care</h3>
+      <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
+        <img src="{{ url_for('static', filename='images/neurosurgery.jpg') }}" alt="Pediatric Neurosurgical Care" class="rounded-lg object-cover w-full h-64">
+        <p class="text-gray-700 text-lg leading-relaxed">
+          The Dza Kwelin Children's Hospital, with its dedicated pediatric neurosurgery unit, routinely performs critical procedures. These include VP shunt placement for hydrocephalus, surgical closure of neural tube defects like myelomeningocele, and emergency burr hole drainage for intracranial hematomas.
+          <br><br>
+          The unit also manages complex skull fractures requiring surgical repair and undertakes procedures for brain and spinal cord tumors. With our volunteer neurosurgeons, this specialized unit ensures timely and expert neurosurgical care for children with diverse neurological conditions.
+        </p>
+      </div>
+    </div>
+
+    <!-- Section 5: Community Education Impact -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-semibold text-blue-800 mb-4">5. Community Education and Public Health Impact</h3>
+      <div class="grid md:grid-cols-3 gap-6 items-center mb-6">
+        <img src="{{ url_for('static', filename='images/community-education.jpg') }}" alt="Community Education 1" class="rounded-lg object-cover w-full h-64">
+        <img src="{{ url_for('static', filename='images/community-education2.jpg') }}" alt="Community Education 2" class="rounded-lg object-cover w-full h-64">
+        <img src="{{ url_for('static', filename='images/community-education3.jpg') }}" alt="Community Education 3" class="rounded-lg object-cover w-full h-64">
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        At the Dza Kwelin Children's Hospital, community education is a cornerstone of our mission. We've reached over 10,000 households and 60,000 women, significantly reducing craniospinal congenital malformations through pre-conceptual folic acid awareness over five years.
+        <br><br>
+        Additionally, over 30,000 Mogode teenagers have been educated on HIV and Hepatitis B/C prevention and treatment, fostering a proactive approach to health within the community.
+      </p>
+    </div>
+        <!-- Section 6: Severe Malnutrition -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-semibold text-blue-800 mb-4">6. Treatment of Severe Malnutrition and Its Associated Complications</h3>
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <img src="{{ url_for('static', filename='images/malnutrition1.jpg') }}" alt="Malnutrition Treatment 1" class="rounded-lg object-cover w-full h-64">
+        <img src="{{ url_for('static', filename='images/malnutrition2.jpg') }}" alt="Malnutrition Treatment 2" class="rounded-lg object-cover w-full h-64">
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Dza Kwelin Children's Hospital addresses severe malnutrition with a phased approach tailored to resource constraints.
+        <br><br>
+        Initial stabilization focuses on treating dehydration with oral or intravenous rehydration solutions and managing infections with affordable antibiotics. Nutritional rehabilitation begins with F-75 therapeutic milk, transitioning to F-100 as tolerated. Micronutrient supplementation, deworming, and psychosocial support are integrated.
+        <br><br>
+        Emphasis is placed on educating caregivers for sustainable home-based care and prevention.
+      </p>
+    </div>
+
   </div>
 </section>
 {% endblock %}

@@ -11,19 +11,19 @@ def inject_current_year():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
-
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+    return render_template('home.html', current_page='home')
 
 
 @app.route('/services')
 def services():
-    return render_template('service.html')
+    return render_template('service.html', current_page='services')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html', current_page='about')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', current_page='contact')

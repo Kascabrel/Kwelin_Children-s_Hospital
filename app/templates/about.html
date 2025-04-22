@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}About - Dr. Kamga{% endblock %}
+{% block content %}
+
+<div class="text-center mb-14">
+  <h2 class="text-4xl md:text-5xl font-bold text-blue-800">About Me</h2>
+  <p class="text-lg mt-3 text-gray-600">Resident Neurosurgeon | Humanitarian | Advocate for Pediatric Neurosurgery in Africa</p>
+</div>
+
+<div class="grid md:grid-cols-2 gap-10 items-start">
+  <div>
+    <h3 class="text-2xl font-semibold text-blue-700 mb-4">Professional Journey</h3>
+    <p class="text-gray-700 mb-4 leading-relaxed">
+      I am currently a fifth-year resident in Neurosurgery at the University of Nairobi, training at Kenyatta National Hospital. My focus is on pediatric neurosurgery where I manage cases such as hydrocephalus, spina bifida, brain tumors, and neurotrauma.
+    </p>
+    <p class="text-gray-700 leading-relaxed">
+      Previously, I served as a Medical Officer at Mogodé District Hospital in Northern Cameroon. Despite harsh conditions and lack of equipment, I established the first operating theatre and performed life-saving surgeries. I am deeply committed to bringing accessible pediatric neurosurgical care to underserved populations.
+    </p>
+  </div>
+  <div class="flex justify-center">
+    <img src="{{ url_for('static', filename='images/doctor.jpg') }}" alt="Dr Kamga" class="rounded-2xl shadow-xl w-full max-w-sm">
+  </div>
+</div>
+
+<section class="mt-16 space-y-12">
+  <div>
+    <h4 class="text-xl font-semibold text-blue-700 mb-2">Qualifications & Experience</h4>
+    <ul class="list-disc ml-6 text-gray-700 space-y-1">
+      <li>5th year Neurosurgery Resident, University of Nairobi</li>
+      <li>Medical Officer, Mogodé District Hospital (2017–2020)</li>
+      <li>Internships in Internal Medicine, Surgery, Pediatrics, and OB/GYN</li>
+      <li>Coordinator of community health activities in Ekona Mbengue</li>
+    </ul>
+  </div>
+
+  <div>
+    <h4 class="text-xl font-semibold text-blue-700 mb-2">Conferences & Courses</h4>
+    <ul class="list-disc ml-6 text-gray-700 space-y-1">
+      <li>SNOSSA 2023 Conference - Nairobi</li>
+      <li>EAANS 2023 - Mombasa</li>
+      <li>CAANS Congress 2022 - Nairobi</li>
+      <li>Workshop Chair - Spinal Dysraphism, Far North Cameroon (2024)</li>
+      <li>Ethics of Research Training - Buea, Cameroon</li>
+    </ul>
+  </div>
+
+  <div>
+    <h4 class="text-xl font-semibold text-blue-700 mb-2">Advocacy & Vision</h4>
+    <p class="text-gray-700">
+      My ongoing research aims to evaluate the knowledge and practices related to pediatric neural tube defects in the Far North of Cameroon. I believe education, early diagnosis, and advocacy can save thousands of children each year. I envision a future where every child in Africa has access to quality neurosurgical care.
+    </p>
+  </div>
+
+  <div>
+    <h4 class="text-xl font-semibold text-blue-700 mb-2">Languages</h4>
+    <p class="text-gray-700">French, English, Kiswahili, Fulfulde, Kapsiki, Chadian Arabic</p>
+  </div>
+</section>
+
+{% endblock %}

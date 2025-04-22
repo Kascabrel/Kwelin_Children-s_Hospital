@@ -1,4 +1,29 @@
-from flask import Flask
+from flask import Flask, render_template
+from datetime import datetime
 
 app = Flask(__name__)
-app.config.from_object('config.Config')
+
+
+@app.context_processor
+def inject_current_year():
+    return {'current_year': datetime.now().year}
+
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/services')
+def services():
+    return render_template('services.html')

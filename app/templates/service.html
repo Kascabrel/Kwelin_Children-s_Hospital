@@ -1,22 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
- services
-    <h1>Services</h1>
-    <p>We offer a range of medical services to cater to your health needs.</p>
-    <ul>
-        <li>General Consultation</li>
-        <li>Pediatric Care</li>
-        <li>Emergency Services</li>
-        <li>Surgical Procedures</li>
-        <li>Health Education and Counseling</li>
-    </ul>
+{% extends "base.html" %}
 
-    <h2>Contact Us</h2>
-    <p>If you have any questions or would like to schedule an appointment, please contact us.</p>
-</body>
-</html>
+{% block content %}
+<section class="bg-blue-50 py-16">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Hospital Logo/Image -->
+    <div class="flex justify-start mb-8">
+      <img src="{{ url_for('static', filename='images/hospital-logo.png') }}" alt="Hospital Logo" class="h-20 object-contain">
+    </div>
+
+    <h2 class="text-4xl font-bold text-center text-blue-900 mb-16">Our Medical Services</h2>
+
+    <!-- Section 1: Severe Malaria Treatment -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-semibold text-blue-800 mb-4">1. Treatment of Severe Malaria and Its Associated Complications</h3>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Severe malaria remains the number one killer in our community. At Dza Kwelin Children's Hospital, we approach diagnosis and treatment with urgency and precision.
+        <br><br>
+        Our rapid diagnostic tests and microscopic blood smears confirm the parasite presence and density. Intravenous artesunate is our first-line treatment, delivered swiftly to stop the infection in its tracks.
+        <br><br>
+        Severe malaria often leads to life-threatening anemia, which is why we prioritize timely, safe blood transfusions. Our team ensures rigorous blood typing, cross-matching, and careful monitoring to improve patient outcomes and save lives.
+      </p>
+    </div>
+
+    <!-- Section 2: Pediatric Infections -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-semibold text-blue-800 mb-4">2. Treatment of Various Pediatric Infections</h3>
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <!-- Image 1 -->
+        <img src="{{ url_for('static', filename='images/infection-treatment.jpg') }}" alt="Pediatric Infection Treatment 1" class="rounded-lg object-cover w-full h-64">
+        <!-- Image 2 -->
+        <img src="{{ url_for('static', filename='images/infection-treatment2.jpg') }}" alt="Pediatric Infection Treatment 2" class="rounded-lg object-cover w-full h-64">
+      </div>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        From meningitis to skin infections and abscesses, our hospital uses a comprehensive strategy to treat a wide array of childhood infections.
+        <br><br>
+        Lumbar punctures and CSF analysis enable fast meningitis diagnosis. URTIs like pneumonia and TB are managed with targeted antibiotics and supportive care.
+        <br><br>
+        We treat UTIs, salmonellosis, and other bacterial infections with evidence-based therapy. Skin infections like impetigo and cellulitis are treated based on severity with topical or systemic medications.
+      </p>
+    </div>
+
+    <!-- Section 3: Pediatric Emergency Care -->
+    <div>
+      <h3 class="text-2xl font-semibold text-blue-800 mb-4">3. Emergency Management of Common Pediatric Ailments</h3>
+      <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
+        <!-- Image -->
+        <img src="{{ url_for('static', filename='images/emergency-care.jpg') }}" alt="Emergency Pediatric Care" class="rounded-lg object-cover w-full h-64">
+
+        <!-- Text -->
+        <p class="text-gray-700 text-lg leading-relaxed">
+          The Dza Kwelin Children's Hospital is equipped to handle a range of common pediatric emergencies with prompt and efficient care.
+          <br><br>
+          For severe respiratory distress, immediate interventions include oxygen therapy, nebulization, and, if necessary, intubation and ventilation.
+          Febrile seizures are managed with antipyretics and anticonvulsants, with thorough investigations to identify the underlying cause.
+          <br><br>
+          In cases of severe dehydration due to vomiting or diarrhea, rapid fluid resuscitation via IV lines or oral rehydration therapy is prioritized.
+          Injuries, trauma, poisonings, and allergic reactions are also treated with swift, targeted care — ensuring children receive life-saving attention quickly.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

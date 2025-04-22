@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="bg-gray-100 py-16" id="contact">
+  <div class="max-w-xl mx-auto px-6">
+    <h2 class="text-3xl font-semibold text-center text-gray-800 mb-4">Get in Touch with Dr. Kamga</h2>
+    <p class="text-center text-gray-600 mb-10 text-lg leading-relaxed">
+      Whether you have a question, need medical advice, or want to schedule a consultation,<br class="hidden sm:inline">
+      Dr. [Name] is here to help. Fill out the form below and we’ll get back to you as soon as possible.
+    </p>
+
+    <form
+      action="mailto:yourclinic@email.com"
+      method="POST"
+      enctype="text/plain"
+      class="bg-white p-6 rounded-lg shadow-md space-y-4"
+    >
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
+        <input type="text" id="name" name="name" required
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400">
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Your Email</label>
+        <input type="email" id="email" name="email" required
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400">
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700">Your Message</label>
+        <textarea id="message" name="message" rows="4" required
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"></textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit"
+          class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
+          Send Message
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

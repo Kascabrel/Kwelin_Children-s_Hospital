@@ -1,84 +1,95 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dza Kwelin Children's Hospital</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom CSS (if needed) -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  </head>
-  <body class="bg-gray-100 text-gray-900">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
+    <!-- remplace avec ton kit FontAwesome si besoin -->
+</head>
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
 
-    <!-- Navbar -->
-    <!-- Navbar -->
-  <!-- Navbar (Bootstrap 5) -->
 <!-- Navbar -->
-<nav class="bg-white border-b border-gray-200 shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-      <!-- Logo -->
-      <div class="flex-shrink-0">
-        <a href="/" class="text-xl font-bold text-blue-600">Dza Kwelin Children's</a>
-      </div>
+<nav class="bg-gray-900 shadow-md py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
 
-      <!-- Desktop Menu -->
-    <div class="hidden md:flex space-x-8">
-        <a href="/" class="{{ 'text-blue-700 font-semibold' if current_page == 'home' else 'text-gray-700 hover:text-blue-600' }} font-medium">Home</a>
-        <a href="/services" class="{{ 'text-blue-700 font-semibold' if current_page == 'services' else 'text-gray-700 hover:text-blue-600' }} font-medium">Services</a>
-        <a href="/about" class="{{ 'text-blue-700 font-semibold' if current_page == 'about' else 'text-gray-700 hover:text-blue-600' }} font-medium">About Me</a>
-        <a href="/contact" class="{{ 'text-blue-700 font-semibold' if current_page == 'contact' else 'text-gray-700 hover:text-blue-600' }} font-medium">Contact</a>
+            <!-- Logo + texte -->
+            <div class="flex items-center space-x-3">
+                <img src="{{ url_for('static', filename='images/Hospital.jpg') }}" alt="Logo"
+                     class="w-10 h-10 rounded-full">
+                <a href="/" class="text-xl font-bold text-white">Dza Kwelin Children's</a>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="/" class="nav-link {% if current_page == 'home' %}active{% endif %}">Home</a>
+                <a href="/services" class="nav-link {% if current_page == 'services' %}active{% endif %}">Services</a>
+                <a href="/about" class="nav-link {% if current_page == 'about' %}active{% endif %}">About Me</a>
+                <a href="/contact" class="nav-link {% if current_page == 'contact' %}active{% endif %}">Contact</a>
+            </div>
+
+            <!-- Mobile button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </div>
 
-      <!-- Mobile button -->
-      <div class="md:hidden">
-        <button id="mobile-menu-button" class="text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2 bg-gray-800">
+        <a href="/" class="nav-link block {% if current_page == 'home' %}active{% endif %}">Home</a>
+        <a href="/services" class="nav-link block {% if current_page == 'services' %}active{% endif %}">Services</a>
+        <a href="/about" class="nav-link block {% if current_page == 'about' %}active{% endif %}">About Me</a>
+        <a href="/contact" class="nav-link block {% if current_page == 'contact' %}active{% endif %}">Contact</a>
     </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-2">
-    <a href="/" class="{{ 'text-blue-700 font-semibold' if current_page == 'home' else 'text-gray-700 hover:text-blue-600' }} font-medium block">Home</a>
-    <a href="/services" class="{{ 'text-blue-700 font-semibold' if current_page == 'services' else 'text-gray-700 hover:text-blue-600' }} font-medium block">Services</a>
-    <a href="/about" class="{{ 'text-blue-700 font-semibold' if current_page == 'about' else 'text-gray-700 hover:text-blue-600' }} font-medium block">About Me</a>
-    <a href="/contact" class="{{ 'text-blue-700 font-semibold' if current_page == 'contact' else 'text-gray-700 hover:text-blue-600' }} font-medium block">Contact</a>
-  </div>
 </nav>
+
 
 <!-- Toggle script -->
 <script>
-  const menuBtn = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+    const menuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
 </script>
 
+<!-- Main Content -->
+<main class="flex-grow container mx-auto p-6">
+    {% block content %}{% endblock %}
+</main>
 
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 py-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6">
+        <p class="text-sm">&copy; 2025 Dza Kwelin Children's Hospital</p>
 
-
-    <!-- Main Content -->
-    <div class="container mx-auto p-6">
-      {% block content %}
-      <!-- Page-specific content will go here -->
-      {% endblock %}
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+          <span class="text-sm">Developed by
+            <a href="https://steve-kamguia.kascali.de" target="_blank" class="text-blue-400 hover:underline">
+              Steve Cabrel
+            </a>
+          </span>
+            <a href="https://github.com/ton-github" target="_blank" class="hover:text-white">
+                <i class="fab fa-github fa-lg"></i>
+            </a>
+            <a href="https://linkedin.com/in/ton-linkedin" target="_blank" class="hover:text-blue-400">
+                <i class="fab fa-linkedin fa-lg"></i>
+            </a>
+        </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4 text-center">
-      <p>&copy; 2025 Dr. Kamga. All rights reserved.</p>
-    </footer>
-
-    <!-- Tailwind JS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-  </body>
+</footer>
+</body>
 </html>

@@ -2,20 +2,32 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="relative bg-blue-900 text-white py-32 bg-cover bg-center" style="background-image: url('{{ url_for('static', filename='images/Hospital.jpg') }}');">
+<section class="relative h-screen bg-cover bg-center flex items-center justify-center text-center text-white"
+  style="background-image: url('{{ url_for('static', filename='images/clinic-4969621_1280.jpg') }}');">
+  <!-- Overlay -->
   <div class="absolute inset-0 bg-blue-900 bg-opacity-60"></div>
-  <div class="relative max-w-6xl mx-auto px-6 text-center z-10">
-    <h1 class="text-4xl sm:text-5xl font-bold mb-6">Dza Kwelin Children's Hospital</h1>
-    <p class="text-lg sm:text-xl mb-8">A Beacon of Hope for Cameroon's Underprivileged Children</p>
-    <a href="/services" class="inline-block bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-gray-100 transition">Explore Our Services</a>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 px-6 bg-blue-900 bg-opacity-80 px-12 py-8 m-2 rounded-xl shadow-lg backdrop-blur-sm">
+    <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 drop-shadow-lg">
+      Dza Kwelin Children's Hospital
+    </h1>
+    <p class="text-lg sm:text-2xl mb-8 max-w-2xl mx-auto">
+      A Beacon of Hope for Cameroon's Underprivileged Children
+    </p>
+    <a href="/services"
+       class="inline-block bg-white text-blue-700 font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 hover:bg-gray-100 transition transform duration-300">
+       Explore Our Services
+    </a>
   </div>
 </section>
 
 <!-- Mission Section -->
-<section class="py-16 bg-white">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-3xl font-semibold text-blue-800 mb-6 text-center">Our Mission</h2>
-    <p class="text-gray-700 text-lg leading-relaxed text-center">
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-blue-800 mb-2">Our Mission</h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-teal-400 mx-auto mb-6 rounded-full"></div>
+    <p class="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
       Founded in 2019 by the Salaam Doctors' Foundation, Dza Kwelin Children's Hospital is dedicated to delivering equitable, affordable, and accessible healthcare to every child in Cameroon.
       We aim to bridge the healthcare gap by offering high-quality pediatric services to the most vulnerable, especially the internally displaced and underserved communities.
     </p>
@@ -23,13 +35,33 @@
 </section>
 
 <!-- Impact Section -->
-<section class="py-16 bg-blue-50">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-3xl font-semibold text-blue-800 mb-6 text-center">Our Impact</h2>
-    <p class="text-gray-700 text-lg leading-relaxed text-center">
-      From a humble 10-bed beginning, our hospital has grown to a 28-bed facility, staffed by volunteer pediatricians, general surgeons, and physicians.
-      Our mission is supported by a compassionate nursing team that ensures holistic care for every child.
-    </p>
+<section class="py-20 bg-blue-50">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-blue-800 mb-2">Our Impact</h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-teal-400 mx-auto mb-12 rounded-full"></div>
+
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+      <!-- Card 1 -->
+      <div class="bg-white shadow-md rounded-xl p-6 hover:shadow-2xl hover:-translate-y-2 transition transform">
+        <i class="fas fa-bed text-4xl mb-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-transparent bg-clip-text"></i>
+        <h3 class="text-xl font-semibold mb-2">28 Beds</h3>
+        <p class="text-gray-600">From a humble 10-bed beginning to a 28-bed facility serving children in need.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white shadow-md rounded-xl p-6 hover:shadow-2xl hover:-translate-y-2 transition transform">
+        <i class="fas fa-user-md text-4xl mb-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-transparent bg-clip-text"></i>
+        <h3 class="text-xl font-semibold mb-2">Dedicated Team</h3>
+        <p class="text-gray-600">Volunteer pediatricians, surgeons, and physicians supported by compassionate nurses.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white shadow-md rounded-xl p-6 hover:shadow-2xl hover:-translate-y-2 transition transform">
+        <i class="fas fa-heart text-4xl mb-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-transparent bg-clip-text"></i>
+        <h3 class="text-xl font-semibold mb-2">Holistic Care</h3>
+        <p class="text-gray-600">We ensure holistic healthcare for every child, regardless of their background.</p>
+      </div>
+    </div>
   </div>
 </section>
 {% endblock %}

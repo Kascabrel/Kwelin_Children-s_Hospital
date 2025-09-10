@@ -2,40 +2,49 @@
 {% block title %}About - Dr. Kamga{% endblock %}
 {% block content %}
 
-<section class="py-16 bg-gradient-to-br from-blue-50 to-white">
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+    <!-- Image -->
+    <div class="flex justify-center">
+      <img src="{{ url_for('static', filename='images/doctor_picture.png') }}"
+           alt="Dr Kamga"
+           class="rounded-2xl shadow-2xl w-full max-w-sm border-4 border-white">
+    </div>
+    <!-- Intro -->
+    <div class="text-center md:text-left">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Dr. Kamga</h1>
+      <p class="text-lg mb-6 opacity-90">
+        Resident Neurosurgeon | Humanitarian | Advocate for Pediatric Neurosurgery in Africa
+      </p>
+      <blockquote class="italic text-blue-100">"Every child deserves a chance to heal and thrive."</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- About Content -->
+<section class="py-20 bg-gradient-to-br from-blue-50 to-white">
   <div class="max-w-6xl mx-auto px-6">
 
-    <!-- Title -->
-    <div class="text-center mb-14">
-      <h2 class="text-4xl md:text-5xl font-bold text-blue-800">About Me</h2>
-      <p class="text-lg mt-3 text-gray-600">Resident Neurosurgeon | Humanitarian | Advocate for Pediatric Neurosurgery in Africa</p>
+    <!-- Professional Journey -->
+    <div class="bg-white shadow-lg rounded-2xl p-8 mb-16">
+      <h2 class="text-3xl font-bold text-blue-800 mb-6">👨‍⚕️ Professional Journey</h2>
+      <p class="text-gray-700 mb-4 leading-relaxed">
+        I’m a fifth-year Neurosurgery resident at the University of Nairobi, currently training at Kenyatta National Hospital with a focus on pediatric neurosurgery.
+        I manage cases like hydrocephalus, spina bifida, neurotrauma, and brain tumors.
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        Formerly at Mogodé District Hospital in Northern Cameroon, I led life-saving surgical interventions in a resource-limited setting and established its first operating theatre.
+        My mission is to expand access to pediatric neurosurgical care across underserved communities in Africa.
+      </p>
     </div>
 
-    <!-- Profile Card -->
-    <div class="grid md:grid-cols-2 gap-10 items-center bg-white rounded-2xl shadow-lg p-8">
-      <!-- Portrait Image -->
-      <div class="flex justify-center">
-        <img src="{{ url_for('static', filename='images/doctor_picture.png') }}" alt="Dr Kamga" class="rounded-2xl shadow-lg w-full max-w-sm">
-      </div>
-
-      <!-- Bio -->
-      <div>
-        <h3 class="text-2xl font-semibold text-blue-700 mb-4">Professional Journey</h3>
-        <p class="text-gray-700 mb-4 leading-relaxed">
-          I'm a fifth-year Neurosurgery resident at the University of Nairobi, currently training at Kenyatta National Hospital with a focus on pediatric neurosurgery. I manage cases like hydrocephalus, spina bifida, neurotrauma, and brain tumors.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-          Formerly at Mogodé District Hospital in Northern Cameroon, I led life-saving surgical interventions in a resource-limited setting and established its first operating theatre. My mission is to expand access to pediatric neurosurgical care across underserved communities in Africa.
-        </p>
-      </div>
-    </div>
-
-    <!-- Details Sections -->
-    <section class="mt-16 space-y-16">
+    <!-- Info Cards -->
+    <div class="grid md:grid-cols-2 gap-8">
 
       <!-- Qualifications -->
-      <div class="bg-white shadow-md rounded-xl p-6">
-        <h4 class="text-xl font-semibold text-blue-700 mb-4">🎓 Qualifications & Experience</h4>
+      <div class="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold text-blue-700 mb-4">🎓 Qualifications & Experience</h3>
         <ul class="list-disc ml-6 text-gray-700 space-y-2">
           <li>5th-year Neurosurgery Resident, University of Nairobi</li>
           <li>Medical Officer, Mogodé District Hospital (2017–2020)</li>
@@ -44,33 +53,46 @@
         </ul>
       </div>
 
-      <!-- Conferences -->
-      <div class="bg-white shadow-md rounded-xl p-6">
-        <h4 class="text-xl font-semibold text-blue-700 mb-4">📚 Conferences & Courses</h4>
-        <ul class="list-disc ml-6 text-gray-700 space-y-2">
-          <li>SNOSSA 2023 – Nairobi</li>
-          <li>EAANS 2023 – Mombasa</li>
-          <li>CAANS Congress 2022 – Nairobi</li>
-          <li>Workshop Chair – Spinal Dysraphism, Cameroon (2024)</li>
-          <li>Ethics of Research Training – Buea, Cameroon</li>
-        </ul>
-      </div>
-
-      <!-- Advocacy -->
-      <div class="bg-white shadow-md rounded-xl p-6">
-        <h4 class="text-xl font-semibold text-blue-700 mb-4">🌍 Advocacy & Vision</h4>
-        <p class="text-gray-700 leading-relaxed">
-          I’m researching neural tube defects among children in Northern Cameroon. My goal is to raise awareness, improve early diagnosis, and ensure every African child can access quality neurosurgical care. Education and advocacy are powerful tools to save lives.
-        </p>
-      </div>
-
       <!-- Languages -->
-      <div class="bg-white shadow-md rounded-xl p-6">
-        <h4 class="text-xl font-semibold text-blue-700 mb-4">🗣️ Languages</h4>
+      <div class="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold text-blue-700 mb-4">🗣️ Languages</h3>
         <p class="text-gray-700">French, English, Kiswahili, Fulfulde, Kapsiki, Chadian Arabic</p>
       </div>
+    </div>
 
-    </section>
+    <!-- Conferences Timeline -->
+    <div class="mt-16">
+      <h3 class="text-2xl font-bold text-blue-800 mb-8">📚 Conferences & Courses</h3>
+      <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0">
+        <div class="bg-white shadow-md rounded-xl p-6 flex-1">
+          <p class="text-blue-600 font-semibold">2023</p>
+          <p class="text-gray-700">SNOSSA – Nairobi</p>
+          <p class="text-gray-700">EAANS – Mombasa</p>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 flex-1">
+          <p class="text-blue-600 font-semibold">2022</p>
+          <p class="text-gray-700">CAANS Congress – Nairobi</p>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 flex-1">
+          <p class="text-blue-600 font-semibold">2024</p>
+          <p class="text-gray-700">Workshop Chair – Spinal Dysraphism, Cameroon</p>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 flex-1">
+          <p class="text-blue-600 font-semibold">Other</p>
+          <p class="text-gray-700">Ethics of Research Training – Buea</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advocacy -->
+    <div class="bg-white shadow-md rounded-xl p-6 mt-16">
+      <h3 class="text-xl font-semibold text-blue-700 mb-4">🌍 Advocacy & Vision</h3>
+      <p class="text-gray-700 leading-relaxed">
+        I’m researching neural tube defects among children in Northern Cameroon.
+        My goal is to raise awareness, improve early diagnosis, and ensure every African child can access quality neurosurgical care.
+        Education and advocacy are powerful tools to save lives.
+      </p>
+    </div>
 
   </div>
 </section>

@@ -4,15 +4,43 @@
 <section class="bg-blue-50 py-16">
   <div class="max-w-6xl mx-auto px-6">
 
-    <!-- Hospital Logo/Image -->
+    <!-- Hospital Logo/Image
     <div class="flex justify-start mb-8">
       <img src="{{ url_for('static', filename='images/hospital-logo.png') }}" alt="Hospital Logo" class="h-20 object-contain">
+    </div>  -->
+
+    <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">Our Medical Services</h2>
+
+    <!-- Services Navigation -->
+    <div class="sticky top-16 bg-white shadow-md z-20 py-3 px-4 mb-16 rounded-lg">
+      <!-- Desktop: Horizontal menu -->
+      <div class="hidden md:flex flex-wrap justify-center gap-4 text-sm font-medium">
+        <a href="#malaria" class="px-4 py-2 text-blue-700 hover:underline">Malaria</a>
+        <a href="#infections" class="px-4 py-2 text-blue-700 hover:underline">Infections</a>
+        <a href="#emergency" class="px-4 py-2 text-blue-700 hover:underline">Emergency</a>
+        <a href="#neurosurgery" class="px-4 py-2 text-blue-700 hover:underline">Neurosurgery</a>
+        <a href="#education" class="px-4 py-2 text-blue-700 hover:underline">Education</a>
+        <a href="#malnutrition" class="px-4 py-2 text-blue-700 hover:underline">Malnutrition</a>
+      </div>
+
+      <!-- Mobile: Dropdown menu -->
+      <div class="md:hidden">
+        <label for="services-nav" class="sr-only">Navigate services</label>
+        <select id="services-nav" class="w-full border rounded-md py-2 px-3 text-blue-700"
+          onchange="if (this.value) document.querySelector(this.value).scrollIntoView({behavior: 'smooth'})">
+          <option value="">-- Navigate Services --</option>
+          <option value="#malaria">Malaria</option>
+          <option value="#infections">Infections</option>
+          <option value="#emergency">Emergency</option>
+          <option value="#neurosurgery">Neurosurgery</option>
+          <option value="#education">Education</option>
+          <option value="#malnutrition">Malnutrition</option>
+        </select>
+      </div>
     </div>
 
-    <h2 class="text-4xl font-bold text-center text-blue-900 mb-16">Our Medical Services</h2>
-
     <!-- Section 1: Severe Malaria Treatment -->
-    <div class="mb-16">
+    <div id="malaria" class="mb-16 scroll-mt-24">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">1. Treatment of Severe Malaria and Its Associated Complications</h3>
       <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
         <img src="{{ url_for('static', filename='images/malaria-treatment.jpg') }}" alt="Malaria Treatment" class="rounded-lg object-cover w-full h-64">
@@ -27,7 +55,7 @@
     </div>
 
     <!-- Section 2: Pediatric Infections -->
-    <div class="mb-16">
+    <div id="infections" class="mb-16 scroll-mt-24">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">2. Treatment of Various Pediatric Infections</h3>
       <div class="grid md:grid-cols-2 gap-6 mb-6">
         <img src="{{ url_for('static', filename='images/infection-treatment.jpg') }}" alt="Pediatric Infection Treatment 1" class="rounded-lg object-cover w-full h-64">
@@ -43,7 +71,7 @@
     </div>
 
     <!-- Section 3: Pediatric Emergency Care -->
-    <div class="mb-16">
+    <div id="emergency" class="mb-16 scroll-mt-24">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">3. Emergency Management of Common Pediatric Ailments</h3>
       <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
         <img src="{{ url_for('static', filename='images/emergency-care.jpg') }}" alt="Emergency Pediatric Care" class="rounded-lg object-cover w-full h-64">
@@ -60,7 +88,7 @@
     </div>
 
     <!-- Section 4: Pediatric Neurosurgical Care -->
-    <div class="mb-16">
+    <div id="neurosurgery" class="mb-16 scroll-mt-24">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">4. Pediatric Neurosurgical Care</h3>
       <div class="grid md:grid-cols-2 gap-6 items-center mb-6">
         <img src="{{ url_for('static', filename='images/neurosurgery.jpg') }}" alt="Pediatric Neurosurgical Care" class="rounded-lg object-cover w-full h-64">
@@ -73,7 +101,7 @@
     </div>
 
     <!-- Section 5: Community Education Impact -->
-    <div class="mb-16">
+    <div id="education" class="mb-16 scroll-mt-24">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">5. Community Education and Public Health Impact</h3>
       <div class="grid md:grid-cols-3 gap-6 items-center mb-6">
         <img src="{{ url_for('static', filename='images/community-education.jpg') }}" alt="Community Education 1" class="rounded-lg object-cover w-full h-64">
@@ -86,8 +114,9 @@
         Additionally, over 30,000 Mogode teenagers have been educated on HIV and Hepatitis B/C prevention and treatment, fostering a proactive approach to health within the community.
       </p>
     </div>
-        <!-- Section 6: Severe Malnutrition -->
-    <div class="mb-16">
+
+    <!-- Section 6: Severe Malnutrition -->
+    <div id="malnutrition" class="mb-16 scroll-mt-24">
       <h3 class="text-2xl font-semibold text-blue-800 mb-4">6. Treatment of Severe Malnutrition and Its Associated Complications</h3>
       <div class="grid md:grid-cols-2 gap-6 mb-6">
         <img src="{{ url_for('static', filename='images/malnutrition1.jpg') }}" alt="Malnutrition Treatment 1" class="rounded-lg object-cover w-full h-64">

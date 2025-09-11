@@ -39,6 +39,6 @@ def contact():
         "contact.html",
         paypal_url=os.getenv("PAYPAL_DONATION_URL", "https://www.paypal.com/donate"),
         mtn=os.getenv("MTN_MOMO", "+237 XXX XXX XXX"),
-        orange=os.getenv("ORANGE_MONEY", "+237 XXX XXX XX1"),
+        orange=os.getenv("", "+237 XXX XXX XX1"),
         email_contact=(os.getenv("EMAIL_CONTACT", "kascabrel@gmail.com")),
     )

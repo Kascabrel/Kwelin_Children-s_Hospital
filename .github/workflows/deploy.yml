@@ -24,26 +24,29 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          IMAGE_NAME=${{ secrets.DOCKER_HUB_USER }}/flask-app:latest
+          IMAGE_NAME=${{ secrets.DOCKER_HUB_USER }}/Kwelin_Childrens_Hospital:latest
+          echo "🔨 Building Docker image $IMAGE_NAME"
           docker build -t $IMAGE_NAME .
+          echo "📤 Pushing Docker image to Docker Hub"
           docker push $IMAGE_NAME
 
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATA_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         run: |
-          IMAGE_NAME=${{ secrets.DOCKER_HUB_USER }}/flask-app:latest
+          IMAGE_NAME=${{ secrets.DOCKER_HUB_USER }}/Kwelin_Childrens_Hospital:latest
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            echo "🔧 Pulling latest Docker image"
+            echo "🔧 Pulling latest Docker image $IMAGE_NAME"
             docker pull $IMAGE_NAME || exit 1
             echo "🛑 Stopping old container"
-            docker stop flask-app || true
-            docker rm flask-app || true
+            docker stop Kwelin_Childrens_Hospital || true
+            docker rm Kwelin_Childrens_Hospital || true
             echo "▶️ Starting new container on port 5203"
-            docker run -d --name flask-app -p 5203:5000 $IMAGE_NAME || exit 1
+            docker run -d --name Kwelin_Childrens_Hospital -p 5203:5000 $IMAGE_NAME || exit 1
           EOF
+

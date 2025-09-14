@@ -40,14 +40,15 @@ jobs:
 
       - name: Deploy to server
         run: |
-          IMAGE_NAME=${{ secrets.DOCKER_HUB_USER }}/Kwelin_Childrens_Hospital:latest
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-            echo " Pulling latest Docker image $IMAGE_NAME"
+          IMAGE_NAME=${{ secrets.DOCKER_HUB_USER }}/kwelin_childrens_hospital:latest
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
+            echo "🔧 Pulling latest Docker image $IMAGE_NAME"
             docker pull $IMAGE_NAME || exit 1
-            echo " Stopping old container"
-            docker stop Kwelin_Childrens_Hospital || true
-            docker rm Kwelin_Childrens_Hospital || true
-            echo " Starting new container on port 5203"
-            docker run -d --name Kwelin_Childrens_Hospital -p 5203:5000 $IMAGE_NAME || exit 1
+            echo "🛑 Stopping old container"
+            docker stop kwelin_childrens_hospital || true
+            docker rm kwelin_childrens_hospital || true
+            echo "▶️ Starting new container on port 5203"
+            docker run -d --name kwelin_childrens_hospital -p 5203:5000 $IMAGE_NAME || exit 1
           EOF
+    
 
